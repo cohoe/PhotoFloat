@@ -262,9 +262,9 @@ class Photo(object):
 			gc.collect()
 		image.thumbnail((size, size), Image.ANTIALIAS)
 		try:
-            # https://github.com/python-pillow/Pillow/issues/2609
-            if image.mode in ('RGBA', 'LA'):
-                image = image.convert('RGB')
+			# https://github.com/python-pillow/Pillow/issues/2609
+			if image.mode in ('RGBA', 'LA'):
+				image = image.convert('RGB')
 			image.save(thumb_path, "JPEG", quality=88)
 		except KeyboardInterrupt:
 			try:
