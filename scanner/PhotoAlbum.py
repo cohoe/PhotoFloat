@@ -104,7 +104,7 @@ class Album(object):
 		return None
 	
 class Photo(object):
-	thumb_sizes = [ (75, True), (150, True), (640, False), (800, False), (1024, False) ]
+	thumb_sizes = [ (75, True), (150, True), (640, False), (800, False), (1024, False), (1920, False) ]
 	def __init__(self, path, thumb_path=None, attributes=None):
 		self._path = trim_base(path)
 		self.is_valid = True
@@ -262,6 +262,9 @@ class Photo(object):
 			gc.collect()
 		image.thumbnail((size, size), Image.ANTIALIAS)
 		try:
+            # https://github.com/python-pillow/Pillow/issues/2609
+            if image.mode in ('RGBA', 'LA'):
+                image = image.convert('RGB')
 			image.save(thumb_path, "JPEG", quality=88)
 		except KeyboardInterrupt:
 			try:
