@@ -53,9 +53,12 @@ class TreeWalker:
 			except KeyboardInterrupt:
 				raise
 			except:
-				next_level()
-				message("unicode error", entry.decode(sys.getfilesystemencoding(), "replace"))
-				back_level()
+				try:
+					next_level()
+					message("unicode error", entry.decode(sys.getfilesystemencoding(), "replace"))
+					back_level()
+				except Exception as e:
+					message("error", e)
 				continue
 			entry = os.path.join(path, entry)
 			if os.path.isdir(entry):
