@@ -63,7 +63,7 @@ Modify the part that says UA-XXXXXX-X and put your own in there.
 This simply runs all the javascript through Google Closure Compiler and all the CSS through YUI Compressor to minify and concatenate everything. Be sure you have java installed.
 
     $ cd web
-    $ make
+    $ make # or gmake if FreeBSD
 
 #### Generate the albums:
 
