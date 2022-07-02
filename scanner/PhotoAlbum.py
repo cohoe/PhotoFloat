@@ -51,7 +51,7 @@ class Album(object):
 			self._photos.sort()
 			self._photos_sorted = True
 		if not self._albums_sorted:
-			self._albums.sort()
+            self._albums.sort(key=lambda a: a.path)
 			self._albums_sorted = True
 	@property
 	def empty(self):
